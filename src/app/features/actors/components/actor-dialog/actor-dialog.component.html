@@ -1,0 +1,11 @@
+<app-modal-wrapper headerTitle="Add new actor">
+  <form [formGroup]="formGroup">
+    <app-input-field
+      type="text"
+      formControlName="name"
+      errorMessage="Name can't be empty"
+      placeholder="Actor name"
+      [submitted]="submitted" />
+    <button (click)="submit()" class="submit">Add!</button>
+  </form>
+</app-modal-wrapper>

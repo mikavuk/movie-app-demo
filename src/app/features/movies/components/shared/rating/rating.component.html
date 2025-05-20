@@ -1,0 +1,6 @@
+<div class="rating-wrapper">
+  <label for="rating">Movie Rating</label>
+  <select [ngModel]="value" (ngModelChange)="updateValue($event)">
+    <option *ngFor="let item of selectOptions" [value]="item">{{ item }}</option>
+  </select>
+</div>

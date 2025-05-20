@@ -1,0 +1,7 @@
+<app-wrapper>
+  <app-movie-filter-bar [form]="filtersForm" (add)="add()" />
+  <app-movie-table
+    [movies]="movies$ | async"
+    (preview)="preview($event)"
+    (delete)="delete($event)"></app-movie-table>
+</app-wrapper>

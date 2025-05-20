@@ -1,0 +1,9 @@
+<div class="filters" style="margin-bottom: 12px">
+  <form [formGroup]="form">
+    <div class="search">
+      <label for="search">Search:</label>
+      <app-input-field type="text" name="search" placeholder="Search" formControlName="name" />
+    </div>
+  </form>
+  <button (click)="add.emit()">Add</button>
+</div>

@@ -1,0 +1,4 @@
+<app-wrapper>
+  <app-actors-filter-bar [form]="formGroup" (add)="addNew()" />
+  <app-actors-table [actors]="actors$ | async" />
+</app-wrapper>

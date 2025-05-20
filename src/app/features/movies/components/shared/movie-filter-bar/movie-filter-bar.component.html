@@ -1,0 +1,8 @@
+<div class="table-header">
+  <form [formGroup]="form" class="filters">
+    <app-input-field type="text" placeholder="Search" formControlName="title" />
+    <app-input-field type="text" placeholder="Year" formControlName="year" />
+    <app-input-field type="text" placeholder="Rate" formControlName="rate" />
+  </form>
+  <button (click)="add.emit()">Add</button>
+</div>

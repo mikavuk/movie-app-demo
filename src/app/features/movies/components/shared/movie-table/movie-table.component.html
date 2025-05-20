@@ -1,0 +1,25 @@
+<table>
+  <thead>
+    <tr>
+      <td>Id</td>
+      <td>Name</td>
+      <td>Year</td>
+      <td>Actors</td>
+      <td>Rate</td>
+      <td>Actions</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let m of movies">
+      <td>{{ m.id }}</td>
+      <td>{{ m.title }}</td>
+      <td>{{ m.year }}</td>
+      <td>{{ m.actors.join(', ') }}</td>
+      <td>{{ m.rate ? m.rate + '/ 10' : '-' }}</td>
+      <td>
+        <a class="table-link" (click)="preview.emit(m.id)">Preview</a> |
+        <a class="table-link" (click)="delete.emit(m.id)">Delete</a>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,14 @@
+form > * {
+  margin: 12px;
+  display: flex;
+  flex-direction: column;
+}
+.select-wrapper {
+  display: flex;
+  > select {
+    margin-bottom: 12px;
+  }
+}
+select.ng-invalid.ng-touched {
+  border: 1px solid red;
+}

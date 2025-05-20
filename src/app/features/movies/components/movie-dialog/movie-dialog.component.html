@@ -1,0 +1,31 @@
+<app-modal-wrapper [headerTitle]="headerTitle">
+  <form [formGroup]="formGroup">
+    <app-input-field
+      placeholder="Title"
+      type="text"
+      formControlName="title"
+      errorMessage="Title is required">
+    </app-input-field>
+
+    <app-input-field
+      placeholder="Year"
+      type="number"
+      formControlName="year"
+      errorMessage="Invalid year">
+    </app-input-field>
+    <div class="select-wrapper">
+      <select placeholder="actors" formControlName="actors" multiple>
+        <option value="" disabled selected>Select actors</option>
+        <option *ngFor="let actor of actors$ | async" [value]="actor.name">
+          {{ actor.name }}
+        </option>
+      </select>
+      <div class="error-message" *ngIf="isControlInvalid('actors')">
+        Please select at least one actor.
+      </div>
+    </div>
+    <app-rating formControlName="rate" />
+    <button (click)="submit()" class="submit">Save!</button>
+    <button *ngIf="isMoviePreview" (click)="delete()" class="submit">Delete!</button>
+  </form>
+</app-modal-wrapper>
