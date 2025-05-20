@@ -47,8 +47,8 @@ export class MoviesComponent implements OnInit, OnDestroy {
       .pipe(
         debounceTime(300),
         switchMap(filters => this.moviesService.getAllWithSearch(filters)),
-        takeUntil(this.destroy$),
-        tap(movies => this.movies$.next(movies))
+        tap(movies => this.movies$.next(movies)),
+        takeUntil(this.destroy$)
       )
       .subscribe();
   }
@@ -57,8 +57,8 @@ export class MoviesComponent implements OnInit, OnDestroy {
     this.moviesService
       .getAllWithSearch(this.filtersForm.value)
       .pipe(
-        takeUntil(this.destroy$),
-        tap(movies => this.movies$.next(movies))
+        tap(movies => this.movies$.next(movies)),
+        takeUntil(this.destroy$)
       )
       .subscribe();
   }

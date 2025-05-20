@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { BehaviorSubject, Subject, debounceTime, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, Subject, debounceTime, switchMap, takeUntil, tap } from 'rxjs';
 import { Actor } from '../../models/actor.model';
 import { ActorsService } from '../../services/actors.service';
 import { ActorDialogComponent } from '../actor-dialog/actor-dialog.component';
@@ -39,7 +38,8 @@ export class ActorsComponent implements OnInit {
       .pipe(
         debounceTime(300),
         switchMap(filters => this.actorsService.getAllWithSearch(filters)),
-        tap(actors => this.actors$.next(actors))
+        tap(actors => this.actors$.next(actors)),
+        takeUntil(this.destroy$)
       )
       .subscribe();
   }
@@ -47,7 +47,10 @@ export class ActorsComponent implements OnInit {
   fetchActors(): void {
     this.actorsService
       .getAllWithSearch({ name: this.formGroup.value })
-      .pipe(tap(actors => this.actors$.next(actors)))
+      .pipe(
+        tap(actors => this.actors$.next(actors)),
+        takeUntil(this.destroy$)
+      )
       .subscribe();
   }
 

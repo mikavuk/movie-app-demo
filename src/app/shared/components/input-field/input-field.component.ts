@@ -1,10 +1,27 @@
-import { Component, Input, Output, EventEmitter, Optional, Self } from '@angular/core';
-import { ControlValueAccessor, NgControl } from '@angular/forms';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  Optional,
+  Self,
+  forwardRef,
+  Inject,
+  Injector,
+} from '@angular/core';
+import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
 
 @Component({
   selector: 'app-input-field',
   templateUrl: './input-field.component.html',
   styleUrls: ['./input-field.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => InputFieldComponent),
+      multi: true,
+    },
+  ],
 })
 export class InputFieldComponent<T extends string | number> implements ControlValueAccessor {
   @Input() placeholder: string = '';
@@ -19,11 +36,7 @@ export class InputFieldComponent<T extends string | number> implements ControlVa
   private onChange: (value: T) => void = () => {};
   private onTouched: () => void = () => {};
 
-  constructor(@Optional() @Self() public ngControl: NgControl) {
-    if (this.ngControl != null) {
-      this.ngControl.valueAccessor = this;
-    }
-  }
+  constructor(@Inject(Injector) @Optional() @Self() public ngControl: NgControl) {}
 
   writeValue(value: T): void {
     this.value = value;
