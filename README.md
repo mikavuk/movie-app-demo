@@ -18,7 +18,7 @@ This project demonstrates the use of Angular 17, Reactive Forms, Modular Archite
 
 Clone the repository and install dependencies:
 
-1. git clone https://github.com/mikavuk/angular-movie-app-demo.git
+1. git clone <https://github.com/mikavuk/angular-movie-app-demo.git>
 
 2. cd angular-movie-app-demo
 3. npm install
